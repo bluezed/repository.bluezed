@@ -17,23 +17,23 @@
 				<left>0</left>
 				<top>0</top>
 				<width>400</width>
-				<height>175</height>
+				<height>125</height>
 				<texture border="12">dialog_context.png</texture>
 				<colordiffuse>$VAR[ColorDialogVar]</colordiffuse>
 			</control>
 			<control type="progress" id="10">
 				<description>progress control</description>
-				<left>31</left>
-				<top>31</top>
+				<left>0</left>
+				<top>0</top>
 				<width>400</width>
-				<height>175</height>
+				<height>125</height>
 			</control>
 			<control type="group">
 				<!--<visible>!System.Platform.Linux.RaspberryPi</visible>-->
 				<control type="image">
 					<description>Busy animation</description>
-					<left>34</left>
-					<top>34</top>
+					<left>19</left>
+					<top>15</top>
 					<width>96</width>
 					<height>96</height>
 					<texture>android/spinner_48_inner_holo.png</texture>
@@ -42,8 +42,8 @@
 				</control>
 				<control type="image">
 					<description>Busy animation</description>
-					<left>34</left>
-					<top>34</top>
+					<left>19</left>
+					<top>15</top>
 					<width>96</width>
 					<height>96</height>
 					<texture>android/spinner_48_outer_holo.png</texture>
@@ -53,9 +53,9 @@
 			</control>
 			<control type="list">
 				<left>150</left>
-				<top>32</top>
+				<top>20</top>
 				<width>300</width>
-				<height>100</height>
+				<height>75</height>
 				<scrolltime tween="quadratic" easing="out">0</scrolltime>
 				<autoscroll time="1000" repeat="1000">true</autoscroll>
 				<orientation>vertical</orientation>
@@ -65,7 +65,7 @@
 						<left>0</left>
 						<top>0</top>
 						<width>200</width>
-						<height>100</height>
+						<height>75</height>
 						<align>left</align>
 						<aligny>center</aligny>
 						<label>$INFO[ListItem.Label]</label>
@@ -78,7 +78,7 @@
 						<left>0</left>
 						<top>0</top>
 						<width>200</width>
-						<height>100</height>
+						<height>75</height>
 						<align>left</align>
 						<aligny>center</aligny>
 						<label>$INFO[ListItem.Label]</label>
