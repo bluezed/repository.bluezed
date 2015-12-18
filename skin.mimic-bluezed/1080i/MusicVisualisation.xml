@@ -18,6 +18,7 @@
 				<description>Fanart image</description>
 				<include>FullscreenDimensions</include>
 				<fadetime>2000</fadetime>
+                <timeperimage>20000</timeperimage>
 				<imagepath background="true">$VAR[VizBackgroundVar]</imagepath>
 				<animation effect="fade" start="100" end="20" time="0" condition="![StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum) | IsEmpty(Visualisation.Name)] + !Skin.HasSetting(HideVisualizationFanart)">Conditional</animation>
 				<animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="!Skin.HasSetting(Disable.AnimateFanart)">Conditional</animation>
