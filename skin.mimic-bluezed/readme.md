@@ -4,16 +4,46 @@
 
 Mimic is a Kodi skin that combines features from reFocus and Aeon Nox. Based on Aeon Nox 5. Many thanks to BigNoid and Jeroen for creating the skins that are the inspiration for this release.
 
-![Home Default] (http://i.imgur.com/sdvbu79.jpg)
+![Home Default] (http://i.imgur.com/5439sGH.jpg)
 
-![Home TopMenu] (http://i.imgur.com/hiGdO55.jpg)
+![Home TopMenu] (http://i.imgur.com/azNqXg8.jpg)
 
-More screenshots available here: http://imgur.com/a/RH3ln#0
+More screenshots available here: http://imgur.com/a/LLSMM
 
+
+***
+**3.4.0**
+- Added more art options for Thumbnail view.
+- Redesigned vertical menu.
+- Added alternative weather/time/date display on home screen.
+- Added user ratings for music/videos.
+- Redesigned information dialogs.
+- Added option for centered menus on default home layout.
+- Converted widgets to use templates so they don't have to reload.
+
+***
+**3.3.1**
+- Fix submenu visibility on default home layout for touch/mouse users.
+
+***
+**3.3.0**
+- Major redesign of main menu, header and views, including new icons and font.
+
+***
+**3.2.0**
+- Reconfigured overlay icons.
+- Changed keyboard autocomplete to use plugin.program.autocomplete.
+- Added status of add-ons in skin settings.
+- Reconfigured color customizer to use skin.helper.service.
+- Added support for weather fanart image resource addons.
+- Reconfigured music viz background options, added support for script.colorbox.
+- Skinned the Audio DSP Manager and Audio DSP Settings dialogs.
 
 ***
 **3.1.1**
 - Updated skin dependencies.
+- Added skin setting to set home background override slideshow.
+- Added oninfo actions for movie and episode widgets.
 
 ***
 **3.1.0**

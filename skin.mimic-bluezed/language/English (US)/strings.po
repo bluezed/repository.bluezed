@@ -25,8 +25,8 @@ msgid "Written by"
 msgstr "Written by"
 
 msgctxt "#31002"
-msgid "Show weather/clock/library info"
-msgstr "Show weather/clock/library info"
+msgid "Show weather/clock/date info"
+msgstr "Show weather/clock/date info"
 
 msgctxt "#31003"
 msgid "LowList"
@@ -57,20 +57,20 @@ msgid "Colours"
 msgstr "Colors"
 
 msgctxt "#31010"
-msgid "Next episode"
-msgstr "Next episode"
+msgid "Next"
+msgstr "Next"
 
 msgctxt "#31011"
-msgid "Latest episode"
-msgstr "Latest episode"
+msgid "Latest"
+msgstr "Latest"
 
 msgctxt "#31012"
 msgid "Airs"
 msgstr "Airs"
 
 msgctxt "#31013"
-msgid "Displays weather, date, time, and library statistics (if configured) on the home screen."
-msgstr "Displays weather, date, time, and library statistics (if configured) on the home screen."
+msgid "Displays weather, time, and date on the home screen."
+msgstr "Displays weather, time, and date on the home screen."
 
 msgctxt "#31014"
 msgid "Extras"
@@ -285,12 +285,12 @@ msgid "Random fanart"
 msgstr "Random fanart"
 
 msgctxt "#31067"
-msgid "Update rating"
-msgstr "Update rating"
+msgid "Update IMDb rating"
+msgstr "Update IMDb rating"
 
 msgctxt "#31068"
-msgid "CD wall"
-msgstr "CD wall"
+msgid "Album wall"
+msgstr "Album wall"
 
 msgctxt "#31069"
 msgid "Change location"
@@ -469,8 +469,8 @@ msgid "Always show submenus"
 msgstr "Always show submenus"
 
 msgctxt "#31113"
-msgid "Displays submenus all the time on the alternative home layouts. Enable for best results with mouse/touch input devices."
-msgstr "Displays submenus all the time on the alternative home layouts. Enable for best results with mouse/touch input devices."
+msgid "Displays submenus all the time. Enable for best results with mouse/touch input devices."
+msgstr "Displays submenus all the time. Enable for best results with mouse/touch input devices."
 
 msgctxt "#31114"
 msgid "When enabled, the selected playlist will play on startup."
@@ -533,20 +533,20 @@ msgid "Import skin settings"
 msgstr "Import skin settings"
 
 msgctxt "#31129"
-msgid "Hide Fanart in full screen visualisation"
-msgstr "Hide Fanart in full screen visualization"
+msgid "Hide background in full screen visualisation"
+msgstr "Hide background in full screen visualization"
 
 msgctxt "#31130"
-msgid "Movie playlist statistics"
-msgstr "Movie playlist statistics"
+msgid "Set busy loader animation"
+msgstr "Set busy loader animation"
 
 msgctxt "#31131"
-msgid "TV Show playlist statistics"
-msgstr "TV Show playlist statistics"
+msgid "Select the image that will be displayed in the header when Kodi is busy."
+msgstr "Select the image that will be displayed in the header when Kodi is busy."
 
 msgctxt "#31132"
-msgid "Musicvideo playlist statistics"
-msgstr "Musicvideo playlist statistics"
+msgid "YouTube Browser"
+msgstr "YouTube Browser"
 
 msgctxt "#31133"
 msgid "Export skin settings to a file."
@@ -561,8 +561,8 @@ msgid "Enable keyboard auto complete"
 msgstr "Enable keyboard auto complete"
 
 msgctxt "#31136"
-msgid "Enables auto complete for the Kodi keyboard, with results provided by Google or YouTube. Depends on Extended Info add-on."
-msgstr "Enables auto complete for the Kodi keyboard, with results provided by Google or YouTube. Depends on Extended Info add-on."
+msgid "Enables auto complete for the Kodi keyboard, with results provided by Google, YouTube, or Bing."
+msgstr "Enables auto complete for the Kodi keyboard, with results provided by Google, YouTube, or Bing."
 
 msgctxt "#31137"
 msgid "No results found"
@@ -593,8 +593,8 @@ msgid "Number of main menu items on default home layout"
 msgstr "Number of main menu items on default home layout"
 
 msgctxt "#31144"
-msgid "Select the number of main menu items to be displayed on the default home layout."
-msgstr "Select the number of main menu items to be displayed on the default home layout."
+msgid "AutoCompletion for virtual keyboard"
+msgstr "AutoCompletion for virtual keyboard"
 
 msgctxt "#31145"
 msgid "- Set general text colour"
@@ -667,6 +667,126 @@ msgstr "- Icon aspect ratio"
 msgctxt "#31162"
 msgid "Select the aspect ratio for the widget icons. Options are Poster, Square, or Landscape."
 msgstr "Select the aspect ratio for the widget icons. Options are Poster, Square, or Landscape."
+
+msgctxt "#31163"
+msgid "Override home backgrounds with slideshow"
+msgstr "Override home backgrounds with slideshow"
+
+msgctxt "#31164"
+msgid "Set a background slideshow that overrides the home backgrounds set in the menu customiser."
+msgstr "Set a background slideshow that overrides the home backgrounds set in the menu customizer."
+
+msgctxt "#31165"
+msgid "Installed"
+msgstr "Installed"
+
+msgctxt "#31166"
+msgid "Uninstalled"
+msgstr "Uninstalled"
+
+msgctxt "#31167"
+msgid "Select background"
+msgstr "Select background"
+
+msgctxt "#31168"
+msgid "Pixelated fanart"
+msgstr "Pixelated fanart"
+
+msgctxt "#31169"
+msgid "Posterized fanart"
+msgstr "Posterized fanart"
+
+msgctxt "#31170"
+msgid "Artist Slideshow"
+msgstr "Artist Slideshow"
+
+msgctxt "#31171"
+msgid "colorbox Script"
+msgstr "colorbox Script"
+
+msgctxt "#31172"
+msgid "ExtendedInfo Script"
+msgstr "ExtendedInfo Script"
+
+msgctxt "#31173"
+msgid "Global Search"
+msgstr "Global Search"
+
+msgctxt "#31174"
+msgid "Grab Fanart"
+msgstr "Grab Fanart"
+
+msgctxt "#31175"
+msgid "Image Resource Select Addon"
+msgstr "Image Resource Select Addon"
+
+msgctxt "#31176"
+msgid "Library Data Provider"
+msgstr "Library Data Provider"
+
+msgctxt "#31177"
+msgid "Nextup Service Notification"
+msgstr "Nextup Service Notification"
+
+msgctxt "#31178"
+msgid "Recordlabel Icons - White"
+msgstr "Recordlabel Icons - White"
+
+msgctxt "#31179"
+msgid "Skin Helper Service"
+msgstr "Skin Helper Service"
+
+msgctxt "#31180"
+msgid "Skin Shortcuts"
+msgstr "Skin Shortcuts"
+
+msgctxt "#31181"
+msgid "Studio Icons - White"
+msgstr "Studio Icons - White"
+
+msgctxt "#31182"
+msgid "ToolBox Script"
+msgstr "ToolBox Script"
+
+msgctxt "#31183"
+msgid "If the add-on is uninstalled, click to install. Once installed, click to open add-on settings."
+msgstr "If the add-on is uninstalled, click to install. Once installed, click to open add-on settings."
+
+msgctxt "#31184"
+msgid "New search"
+msgstr "New search"
+
+msgctxt "#31185"
+msgid "Logged in as"
+msgstr "Logged in as"
+
+msgctxt "#31186"
+msgid "Results for"
+msgstr "Results for"
+
+msgctxt "#31187"
+msgid "- Display in main menu"
+msgstr "- Display in main menu"
+
+msgctxt "#31188"
+msgid "Moves weather, time, and date from a notification at the top of the screen to the main menu."
+msgstr "Moves weather, time, and date from a notification at the top of the screen to the main menu."
+
+msgctxt "#31189"
+msgid "MPAA"
+msgstr "MPAA"
+
+msgctxt "#31190"
+msgid "Added"
+msgstr "Added"
+
+msgctxt "#31191"
+msgid "Rated"
+msgstr "Rated"
+
+msgctxt "#31192"
+msgid "The main and sub menus will wrap, with the center item focused. Option only available for the default home layout."
+msgstr "The main and sub menus will wrap, with the center item focused. Option only available for the default home layout."
 
 msgctxt "#31205"
 msgid "Lyrics Source"
@@ -865,8 +985,8 @@ msgid "10 Day Forecast"
 msgstr "10 Day Forecast"
 
 msgctxt "#31905"
-msgid "Animate artist fanart"
-msgstr "Animate artist fanart"
+msgid "Animate background"
+msgstr "Animate background"
 
 msgctxt "#31906"
 msgid "View"
@@ -999,6 +1119,10 @@ msgstr "Watched status indicator"
 msgctxt "#31944"
 msgid "Choose which overlays to show on thumbs in icon based views. Note that the \"Resume\" flag takes precedent over any watched status."
 msgstr "Choose which overlays to show on thumbs in icon based views. Note that the \"Resume\" flag takes precedent over any watched status."
+
+msgctxt "#31945"
+msgid "WeblySleek UI"
+msgstr "WeblySleek UI"
 
 msgctxt "#31946"
 msgid "The images selected here will show in the corresponding section if no fanart is available."

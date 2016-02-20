@@ -58,7 +58,6 @@
 					<align>left</align>
 					<aligny>center</aligny>
 					<label>$INFO[ListItem.Label]</label>
-					<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(90100)">Conditional</animation>
 				</control>
 			</focusedlayout>
 			<content>
@@ -122,13 +121,13 @@
 					<onclick>SetProperty(Mimic.Temp,Pictures.Fallback,home)</onclick>
 					<onclick>ActivateWindow(1122)</onclick>
 				</item>
-				<item>
+				<!--<item>
 					<label>$LOCALIZE[24027]</label>
 					<onclick>Skin.Reset(ItemToEdit.MultiFanart)</onclick>
 					<onclick>SetProperty(No.Cases,True,home)</onclick>
 					<onclick>SetProperty(Mimic.Temp,Weather.Fallback,home)</onclick>
 					<onclick>ActivateWindow(1122)</onclick>
-				</item>
+				</item>-->
 			</content>
 		</control>
 		<control type="scrollbar" id="60">

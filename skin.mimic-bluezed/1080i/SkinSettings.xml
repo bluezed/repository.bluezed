@@ -5,13 +5,13 @@
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
 	<onload>ClearProperty(MediaMenu,Home)</onload>
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
-	<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000)</onunload>
+	<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mode=single&amp;mainmenuID=9000)</onunload>
 	<controls>
 		<include>CommonBackground</include>
 		<control type="group">
 			<left>0</left>
-			<top>128</top>
-			<include>Window_OpenClose_Animation</include>
+			<top>180</top>
+			<include>Animation.Common</include>
 			<control type="list" id="9000">
 				<left>82</left>
 				<top>0</top>
@@ -91,17 +91,12 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					<!--<item id="7">
+					<item id="8">
 						<label>24001</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					<item id="8">
-						<label>14036</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="9">
+					<!--<item id="9">
 						<label>13000</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
@@ -150,8 +145,18 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31018</label>
-						<label2>$VAR[HomeLayoutSettingVar]</label2>
-						<onclick>ActivateWindow(1131)</onclick>
+						<label2>$INFO[Skin.String(HomeLayout.label)]</label2>
+						<onclick>RunScript(script.skin.helper.service,action=setskinsetting,setting=HomeLayout,header=$LOCALIZE[31018])</onclick>
+					</control>
+					<control type="radiobutton" id="111">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>- Center menus</label>
+						<onclick>Skin.ToggleSetting(Enable.CenteredMenu)</onclick>
+						<selected>Skin.HasSetting(Enable.CenteredMenu)</selected>
+						<visible>!StringCompare(Skin.String(HomeLayout),2) + !StringCompare(Skin.String(HomeLayout),3)</visible>
 					</control>
 					<control type="button" id="100">
 						<width>1316</width>
@@ -160,16 +165,6 @@
 						<font>font15</font>
 						<label>31911</label>
 						<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
-					</control>
-					<control type="button" id="101">
-						<width>1316</width>
-						<height>90</height>
-						<textoffsetx>30</textoffsetx>
-						<font>font15</font>
-						<label>31143</label>
-						<label2>$VAR[MenuItemsVar]</label2>
-						<onclick>Skin.ToggleSetting(OriginalMenu)</onclick>
-						<enable>Skin.HasSetting(Enable.HomeDefault)</enable>
 					</control>
 					<control type="radiobutton" id="102">
 						<width>1316</width>
@@ -195,8 +190,18 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31002</label>
-						<onclick>Skin.ToggleSetting(Disable.Topbarinfo)</onclick>
-						<selected>!Skin.HasSetting(Disable.Topbarinfo)</selected>
+						<onclick>Skin.ToggleSetting(Disable.WeatherClockDate)</onclick>
+						<selected>!Skin.HasSetting(Disable.WeatherClockDate)</selected>
+					</control>
+					<control type="radiobutton" id="101">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31187</label>
+						<enable>!Skin.HasSetting(Disable.WeatherClockDate) + !Skin.HasSetting(Enable.CenteredMenu)</enable>
+						<onclick>Skin.ToggleSetting(Enable.WeatherInMenu)</onclick>
+						<selected>Skin.HasSetting(Enable.WeatherInMenu)</selected>
 					</control>
 					<control type="radiobutton" id="106">
 						<width>1316</width>
@@ -283,6 +288,24 @@
 						<label>- $LOCALIZE[10035]</label>
 						<onclick>Skin.Reset(CustomBackground)</onclick>
 						<visible>!IsEmpty(Skin.String(CustomBackground))</visible>
+					</control>
+					<control type="button" id="605">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31163</label>
+						<label2>$INFO[Skin.String(CustomHomeSlideshow)]</label2>
+						<onclick>Skin.SetPath(CustomHomeSlideshow)</onclick>
+					</control>
+					<control type="button" id="606">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>- $LOCALIZE[10035]</label>
+						<onclick>Skin.Reset(CustomHomeSlideshow)</onclick>
+						<visible>!IsEmpty(Skin.String(CustomHomeSlideshow))</visible>
 					</control>
 					<control type="radiobutton" id="602">
 						<width>1316</width>
@@ -380,8 +403,7 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31212</label>
-						<onclick>Skin.SetString(ColorCustomizer,highlightcolor.name)</onclick>
-						<onclick>ActivateWindow(1130)</onclick>
+						<onclick>RunScript(script.skin.helper.service,action=colorpicker,skinstring=highlightcolor.name,header=$LOCALIZE[31216])</onclick>
 						<enable>Skin.HasSetting(ColorCustomizer.Enabled)</enable>
 					</control>
 					<control type="button" id="504">
@@ -390,8 +412,7 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31213</label>
-						<onclick>Skin.SetString(ColorCustomizer,backgroundcolor.name)</onclick>
-						<onclick>ActivateWindow(1130)</onclick>
+						<onclick>RunScript(script.skin.helper.service,action=colorpicker,skinstring=backgroundcolor.name,header=$LOCALIZE[31217])</onclick>
 						<enable>Skin.HasSetting(ColorCustomizer.Enabled)</enable>
 					</control>
 					<control type="button" id="505">
@@ -400,8 +421,7 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31214</label>
-						<onclick>Skin.SetString(ColorCustomizer,dialogcolor.name)</onclick>
-						<onclick>ActivateWindow(1130)</onclick>
+						<onclick>RunScript(script.skin.helper.service,action=colorpicker,skinstring=dialogcolor.name,header=$LOCALIZE[31218])</onclick>
 						<enable>Skin.HasSetting(ColorCustomizer.Enabled)</enable>
 					</control>
 					<control type="button" id="506">
@@ -410,8 +430,7 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31145</label>
-						<onclick>Skin.SetString(ColorCustomizer,textcolor.name)</onclick>
-						<onclick>ActivateWindow(1130)</onclick>
+						<onclick>RunScript(script.skin.helper.service,action=colorpicker,skinstring=textcolor.name,header=$LOCALIZE[31146])</onclick>
 						<enable>Skin.HasSetting(ColorCustomizer.Enabled)</enable>
 					</control>
 					<control type="button" id="507">
@@ -420,8 +439,7 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>31147</label>
-						<onclick>Skin.SetString(ColorCustomizer,menucolor.name)</onclick>
-						<onclick>ActivateWindow(1130)</onclick>
+						<onclick>RunScript(script.skin.helper.service,action=colorpicker,skinstring=menucolor.name,header=$LOCALIZE[31148])</onclick>
 						<enable>Skin.HasSetting(ColorCustomizer.Enabled)</enable>
 					</control>
 					<control type="button" id="508">
@@ -430,8 +448,8 @@
 						<textoffsetx>30</textoffsetx>
 						<font>font15</font>
 						<label>- $LOCALIZE[10035]</label>
-						<onclick>Skin.SetString(highlightcolor.name,FF3989D3)</onclick>
-						<onclick>Skin.SetString(backgroundcolor.name,FF444444)</onclick>
+						<onclick>Skin.SetString(highlightcolor.name,FF23729B)</onclick>
+						<onclick>Skin.SetString(backgroundcolor.name,FF3B3B3B)</onclick>
 						<onclick>Skin.SetString(dialogcolor.name,FFCCCCCC)</onclick>
 						<onclick>Skin.SetString(textcolor.name,FFCCCCCC)</onclick>
 						<onclick>Skin.SetString(menucolor.name,FFCCCCCC)</onclick>
@@ -450,31 +468,31 @@
 					<control type="image" id="5050">
 						<width>64</width>
 						<height>64</height>
-						<texture>colors/FFCCCCCC.png</texture>
+						<texture>white.png</texture>
 						<colordiffuse>$INFO[Skin.String(highlightcolor.name)]</colordiffuse>
 					</control>
 					<control type="image" id="5051">
 						<width>64</width>
 						<height>64</height>
-						<texture>colors/FFCCCCCC.png</texture>
+						<texture>white.png</texture>
 						<colordiffuse>$INFO[Skin.String(backgroundcolor.name)]</colordiffuse>
 					</control>
 					<control type="image" id="5052">
 						<width>64</width>
 						<height>64</height>
-						<texture>colors/FFCCCCCC.png</texture>
+						<texture>white.png</texture>
 						<colordiffuse>$INFO[Skin.String(dialogcolor.name)]</colordiffuse>
 					</control>
 					<control type="image" id="5053">
 						<width>64</width>
 						<height>64</height>
-						<texture>colors/FFCCCCCC.png</texture>
+						<texture>white.png</texture>
 						<colordiffuse>$INFO[Skin.String(textcolor.name)]</colordiffuse>
 					</control>
 					<control type="image" id="5054">
 						<width>64</width>
 						<height>64</height>
-						<texture>colors/FFCCCCCC.png</texture>
+						<texture>white.png</texture>
 						<colordiffuse>$INFO[Skin.String(menucolor.name)]</colordiffuse>
 					</control>
 				</control>
@@ -512,6 +530,16 @@
 						<onclick>Skin.SetFile(Startup_Playlist_Path,,special://MusicPlaylists/)</onclick>
 						<enable>Skin.HasSetting(Use_Startup_Playlist)</enable>
 					</control>
+					<control type="button" id="308">
+						<description>Busy Loader Image</description>
+                        <width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+                        <label>31130</label>
+                        <label2>$INFO[Skin.String(busyloader)]</label2>
+                        <onclick>Skin.SetImage(busyloader,special://skin/extras/spinners)</onclick>
+                    </control>
 					<control type="radiobutton" id="305">
 						<width>1316</width>
 						<height>90</height>
@@ -529,6 +557,7 @@
 						<label>31135</label>
 						<onclick>Skin.ToggleSetting(Disable.AutoComplete)</onclick>
 						<selected>!Skin.HasSetting(Disable.AutoComplete)</selected>
+						<enable>System.HasAddon(plugin.program.autocompletion)</enable>
 					</control>
 					<control type="button" id="303">
 						<width>1316</width>
@@ -537,6 +566,7 @@
 						<font>font15</font>
 						<label>31119</label>
 						<onclick>RunScript(script.toolbox,info=extrafanartmovie)</onclick>
+						<enable>System.HasAddon(script.toolbox)</enable>
 					</control>
 					<control type="button" id="304">
 						<width>1316</width>
@@ -545,6 +575,7 @@
 						<font>font15</font>
 						<label>31120</label>
 						<onclick>RunScript(script.toolbox,info=extrafanarttvshow)</onclick>
+						<enable>System.HasAddon(script.toolbox)</enable>
 					</control>
 					<control type="button" id="310">
 						<width>1316</width>
@@ -625,21 +656,175 @@
 						<visible>System.HasAddon(script.skin.helper.service)</visible>
 					</control>
 				</control>
-			</control>
-			<control type="scrollbar" id="60">
-				<visible>!Window.IsActive(script-skinshortcuts.xml)</visible>
-				<left>1906</left>
-				<top>-83</top>
-				<width>14</width>
-				<height>1035</height>
-				<onleft>9010</onleft>
-				<onright>9000</onright>
-				<ondown>60</ondown>
-				<onup>60</onup>
+				<control type="grouplist" id="9007">
+					<description>Addons control area</description>
+					<left>522</left>
+					<top>0</top>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>9007</onup>
+					<ondown>9007</ondown>
+					<visible>Container(9000).HasFocus(8)</visible>
+					<control type="button" id="700">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31170</label>
+                        <label2>$VAR[StatusArtistSlideshow]</label2>
+                        <onclick condition="System.HasAddon(script.artistslideshow)">Addon.OpenSettings(script.artistslideshow)</onclick>
+                        <onclick condition="!System.HasAddon(script.artistslideshow)">RunPlugin(plugin://script.artistslideshow)</onclick>
+					</control>
+					<control type="button" id="713">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31144</label>
+                        <label2>$VAR[StatusAutoCompletion]</label2>
+                        <onclick condition="System.HasAddon(plugin.program.autocompletion)">Addon.OpenSettings(plugin.program.autocompletion)</onclick>
+                        <onclick condition="!System.HasAddon(plugin.program.autocompletion)">RunPlugin(plugin://plugin.program.autocompletion)</onclick>
+					</control>
+					<control type="button" id="701">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31171</label>
+                        <label2>$VAR[StatusColorbox]</label2>
+                        <onclick condition="System.HasAddon(script.colorbox)">Addon.OpenSettings(script.colorbox)</onclick>
+                        <onclick condition="!System.HasAddon(script.colorbox)">RunPlugin(plugin://script.colorbox)</onclick>
+					</control>
+					<control type="button" id="702">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31172</label>
+                        <label2>$VAR[StatusExtendedInfo]</label2>
+                        <onclick condition="System.HasAddon(script.extendedinfo)">Addon.OpenSettings(script.extendedinfo)</onclick>
+                        <onclick condition="!System.HasAddon(script.extendedinfo)">RunPlugin(plugin://script.extendedinfo)</onclick>
+					</control>
+					<control type="button" id="703">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31173</label>
+                        <label2>$VAR[StatusGlobalSearch]</label2>
+                        <onclick condition="System.HasAddon(script.globalsearch)">Addon.OpenSettings(script.globalsearch)</onclick>
+                        <onclick condition="!System.HasAddon(script.globalsearch)">RunPlugin(plugin://script.globalsearch)</onclick>
+					</control>
+					<control type="button" id="704">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31174</label>
+                        <label2>$VAR[StatusGrabFanart]</label2>
+                        <onclick condition="System.HasAddon(script.grab.fanart)">Addon.OpenSettings(script.grab.fanart)</onclick>
+                        <onclick condition="!System.HasAddon(script.grab.fanart)">RunPlugin(plugin://script.grab.fanart)</onclick>
+					</control>
+					<control type="button" id="705">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31175</label>
+                        <label2>$VAR[StatusImageResourceSelect]</label2>
+                        <onclick condition="System.HasAddon(script.grab.fanart)">Addon.OpenSettings(script.image.resource.select)</onclick>
+                        <onclick condition="!System.HasAddon(script.grab.fanart)">RunPlugin(plugin://script.image.resource.select)</onclick>
+					</control>
+					<control type="button" id="706">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31176</label>
+                        <label2>$VAR[StatusLibraryDataProvider]</label2>
+                        <onclick condition="System.HasAddon(service.library.data.provider)">Addon.OpenSettings(service.library.data.provider)</onclick>
+                        <onclick condition="!System.HasAddon(service.library.data.provider)">RunPlugin(plugin://service.library.data.provider)</onclick>
+					</control>
+					<control type="button" id="707">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31177</label>
+                        <label2>$VAR[StatusNextupNotification]</label2>
+                        <onclick condition="System.HasAddon(service.nextup.notification)">Addon.OpenSettings(service.nextup.notification)</onclick>
+                        <onclick condition="!System.HasAddon(service.nextup.notification)">RunPlugin(plugin://service.nextup.notification)</onclick>
+					</control>
+					<control type="button" id="708">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31178</label>
+                        <label2>$VAR[StatusRecordLabelFlags]</label2>
+                        <onclick condition="System.HasAddon(resource.images.recordlabels.white)">Addon.OpenSettings(resource.images.recordlabels.white)</onclick>
+                        <onclick condition="!System.HasAddon(resource.images.recordlabels.white)">RunPlugin(plugin://resource.images.recordlabels.white)</onclick>
+					</control>
+					<control type="button" id="709">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31179</label>
+                        <label2>$VAR[StatusSkinHelperService]</label2>
+                        <onclick condition="System.HasAddon(script.skin.helper.service)">Addon.OpenSettings(script.skin.helper.service)</onclick>
+                        <onclick condition="!System.HasAddon(script.skin.helper.service)">RunPlugin(plugin://script.skin.helper.service)</onclick>
+					</control>
+					<control type="button" id="710">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31180</label>
+                        <label2>$VAR[StatusSkinShortcuts]</label2>
+                        <onclick condition="System.HasAddon(script.skinshortcuts)">Addon.OpenSettings(script.skinshortcuts)</onclick>
+                        <onclick condition="!System.HasAddon(script.skinshortcuts)">RunPlugin(plugin://script.skinshortcuts)</onclick>
+					</control>
+					<control type="button" id="711">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31181</label>
+                        <label2>$VAR[StatusStudioFlags]</label2>
+                        <onclick condition="System.HasAddon(resource.images.studios.white)">Addon.OpenSettings(resource.images.studios.white)</onclick>
+                        <onclick condition="!System.HasAddon(resource.images.studios.white)">RunPlugin(plugin://resource.images.studios.white)</onclick>
+					</control>					
+					<control type="button" id="712">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31182</label>
+                        <label2>$VAR[StatusToolbox]</label2>
+                        <onclick condition="System.HasAddon(script.toolbox)">Addon.OpenSettings(script.toolbox)</onclick>
+                        <onclick condition="!System.HasAddon(script.toolbox)">RunPlugin(plugin://script.toolbox)</onclick>
+					</control>
+				</control>
 			</control>
 		</control>
+		<control type="scrollbar" id="60">
+			<visible allowhiddenfocus="true">!Control.HasFocus(9000) + !Window.IsActive(script-skinshortcuts.xml)</visible>
+			<animation effect="fade" time="300" tween="sine" easing="inout" start="0" end="100">Visible</animation>
+			<left>1908</left>
+			<top>0</top>
+			<width>12</width>
+			<height>1080</height>
+			<onleft>9010</onleft>
+			<onright>9000</onright>
+			<ondown>60</ondown>
+			<onup>60</onup>
+		</control>
 		<include>Topbar</include>
-		<include>Bottombar</include>
 		<include>SettingsMediaMenu</include>
 	</controls>
 </window>
