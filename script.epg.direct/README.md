@@ -1,7 +1,7 @@
 EPG-Direct 
 ==========
 
-> Current version: v0.6.1
+> Current version: v0.6.2
 
 [![EPG-Direct](https://s19.postimg.org/760xuqdyb/screenshot017.png)](https://postimg.org/image/fbizsw273/)
 
@@ -48,12 +48,12 @@ That will now give you list of providers for that area. Select one and it will b
  
 - Once you selected at least one lineup you can start adding the channels you would like to have shown in the guide.
 Click on "Edit channels" and you will see the list of your current lineups.
-Select the lineup you want and a window with two columns will appear:
-[![Channel-Selection](https://s19.postimg.org/sr60icaov/screenshot016.png)](https://postimg.org/image/sr60icaov/)
+Select the lineup you want and a window with two columns will appear.
 On the left all the available channels for this lineup are listed. You can scroll through the list and select channels by clicking on them. That will add them to the list on the right.
 Once you're happy with the selection click on "Save" and your channels will be saved to the database.
 You can now repeat this process for any other lineups you have.
 **Note:** To change the order of the channels you need to start the guide and enter the context menu.
+[![Channel-Selection](https://s19.postimg.org/sr60icaov/screenshot016.png)](https://postimg.org/image/sr60icaov/)
 
 - You can delete lineups by selecting "Delete lineup" and simply selecting the lineup you want to remove.
 **Note:** Deleting a lineup will also delete all channels you have selected from that lineup!

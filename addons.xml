@@ -13,7 +13,7 @@
 	</extension>
 </addon>
 
-<addon id="script.epg.direct" name="EPG-Direct" version="0.6.1" provider-name="bluezed">
+<addon id="script.epg.direct" name="EPG-Direct" version="0.6.2" provider-name="bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="script.module.requests" version="2.9.1"/>
@@ -35,7 +35,7 @@
 		<source>https://github.com/bluezed/repository.bluezed</source>
         <website></website>
 		<email>bluezed.apps@gmail.com</email>
-        <news>v0.5.0 (2016-08-21) - Initial release</news>
+        <news>v0.6.2 (2016-08-22) - Initial release</news>
 		<assets>
           <icon>resources/img/icon.png</icon>
           <fanart>resources/img/fanart.jpg</fanart>
