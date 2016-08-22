@@ -9,7 +9,7 @@ EPG-Direct is an open source TV Guide for [Kodi](http://kodi.tv) that makes use 
 
 **Note:** In order the be able to use this addon fully you will require a valid subscription form [SchedulesDirect.org](http://schedulesdirect.org) which will enable you to access the entire channel lineup of legally licenced guide data.
 
-Download the Repository from [HERE](http://raw.github.com/bluezed/repository.bluezed/master/zips/repository.bluezed/repository.bluezed-1.0.zip)
+Download the Repository from [HERE](http://raw.github.com/bluezed/repository.bluezed/master/zips/repository.bluezed/repository.bluezed-1.1.zip)
 
 Here are the basic steps to install EPG-Direct on your Kodi box.
 
