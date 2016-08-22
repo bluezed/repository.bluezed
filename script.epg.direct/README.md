@@ -75,6 +75,8 @@ If it cannot find the channel there it will try the same with the addons.ini fil
 If it has no luck there a dialog will appear where you have the choice to manually select where to play the program from. This selection will them be stored as the default for this channel.
 
 When you click on a program that is on in the future a dialog appears where you can set a "Reminder". The program will the be marked red and you will get a notification 5 minuts before the program starts and then a pop-up at the time the program is scheduled. This pop-up allows you to open the guide directly or just dismiss it and also has a count-down that will close it automatically when that times out.
+
 [![Reminder](https://s19.postimg.org/a1e11lhy7/screenshot018.png)](https://postimg.org/image/a1e11lhy7/)
+
 
 In the same dialog you can change the channel order by clicking on "Channels".
