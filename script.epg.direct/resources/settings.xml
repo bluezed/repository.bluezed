@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+	<category label="30101">
+		<setting id="sd.username" label="SD-Username" default="" type="text"  visible="false"/>
+        <setting id="sd.password" label="SD-Password" default="" type="text" option="hidden" visible="false" />
+		<setting id="sd.changed" label="SD-Changed" default="0" type="number"  visible="false"/>
+		<setting label="Change SchedulesDirect-Login" type="action" action="RunScript($CWD/editor.py, 1)" />
+        <setting label="Add lineup" type="action" action="RunScript($CWD/editor.py, 2)" />
+        <setting label="Edit channels" type="action" action="RunScript($CWD/editor.py, 3)" />
+        <setting label="Delete lineup" type="action" action="RunScript($CWD/editor.py, 4)" />
+        <setting label="" type="sep" />
+        <setting id="sd.range" label="Days of guide data to load" type="slider" default="3" range="1,1,14" option="int" />
+        <setting id="sd.interval" label="30128" type="enum" default="2" lvalues="30129|30130|30131|30132" />
+        <setting id="addons.ini.type" label="30144" type="enum" default="0" lvalues="30143|30142"/>
+        <setting id="addons.ini.file" label="30145" type="file" visible="eq(-1,1)" />
+	</category>
+	
+	<category label="30148">
+		<setting id="skin" label="30141" type="fileenum" values="resources/skins" mask="/" default="Default" />
+        <setting label="" type="sep" />
+		<setting id="logos.enabled" label="30117" type="bool" default="true" />
+		<setting id="logos.source" label="30146" type="enum" default="0" lvalues="30143|30147" visible="eq(-1,true)" />
+        <setting label="Custom logo filenames need to be in PNG format" type="lsep" visible="eq(-2,true) + eq(-1,1)" />
+        <setting label="and match the channel name exactly!" type="lsep" visible="eq(-3,true) + eq(-2,1)" />
+        <setting id="logos.folder" label="30116" type="folder" visible="eq(-4,true) + eq(-3,1)" />
+	</category>
+	
+	<category label="30114">
+        <setting id="autostart" label="30900" type="bool" default="false" />
+		<setting id="enable.osd" label="30118" type="bool" default="true" enable="eq(3,false)" />
+		<setting id="background.stream" label="30450" type="bool" default="false" />
+		<setting label="30119" type="lsep" />
+		<setting id="alternative.playback" label="30120" type="bool" default="false" />
+		<setting label="30121" type="lsep" />
+		<setting id="background.service" label="30400" type="bool" default="false" />
+        <setting id="service.interval" label="30401" type="enum" default="1" lvalues="30402|30403|30404|30405" visible="eq(-1,true)" />
+	</category>
+
+	<category label="30112">
+		<setting id="notifications.enabled" label="30106" type="bool" default="true" />
+		<setting label="30108" type="action" action="RunScript($CWD/notification.py)" />
+	</category>
+	
+	<category label="30140">
+		<setting type="lsep" label="30137"/>
+		<setting type="lsep" label="30138"/>
+        <setting label="30139" type="action" action="RunScript($CWD/ResetDatabase.py)" />
+    </category>
+</settings>

@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addons>
-<addon id="repository.bluezed" name="Bluezed Repository" version="1.1" provider-name="bluezed">
-	<extension point="xbmc.addon.repository" name="Bluezed Repository">
-		<info compressed="false">http://raw.github.com/bluezed/repository.bluezed/master/addons.xml</info>
-		<checksum>http://raw.github.com/bluezed/repository.bluezed/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/bluezed/repository.bluezed/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Bluezed's Repository</summary>
-		<description></description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="script.epg.direct" name="EPG-Direct" version="0.6.0" provider-name="bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
@@ -45,4 +31,3 @@
         </assets>
 	</extension>
 </addon>
-</addons>

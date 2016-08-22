@@ -1,2 +1,2 @@
 # repository.bluezed
-Repository for Kodi addons 
+Bluezed's Repository for Kodi addons 
