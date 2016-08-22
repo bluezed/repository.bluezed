@@ -29,7 +29,7 @@
         </control>
 
         <control type="label">
-            <posx>90</posx>
+            <posx>125</posx>
             <posy>112</posy>
             <width>520</width>
             <height>40</height>
@@ -37,14 +37,26 @@
             <aligny>center</aligny>
             <font>font13</font>
             <textcolor>ffffffff</textcolor>
-            <label>Add &amp; Remove channels from your lineup</label>
+            <label>[B]Add &amp; Remove channels from your lineup[/B]</label>
+        </control>
+
+        <control type="label">
+            <posx>200</posx>
+            <posy>175</posy>
+            <width>400</width>
+            <height>40</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Available channels</label>
         </control>
 
         <control type="fixedlist" id="7000">
             <posx>200</posx>
-            <posy>175</posy>
+            <posy>225</posy>
             <width>400</width>
-            <height>350</height>
+            <height>300</height>
             <viewtype label="list">list</viewtype>
             <orientation>vertical</orientation>
             <onright>6000</onright>
@@ -89,11 +101,23 @@
             </focusedlayout>
         </control>
 
-        <control type="fixedlist" id="6000">
+        <control type="label">
             <posx>700</posx>
             <posy>175</posy>
             <width>400</width>
-            <height>350</height>
+            <height>40</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Selected channels</label>
+        </control>
+
+        <control type="fixedlist" id="6000">
+            <posx>700</posx>
+            <posy>225</posy>
+            <width>400</width>
+            <height>300</height>
             <viewtype label="list">list</viewtype>
             <orientation>vertical</orientation>
             <onright>6003</onright>

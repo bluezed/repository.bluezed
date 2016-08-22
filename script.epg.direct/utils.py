@@ -22,6 +22,7 @@ import os
 from itertools import izip_longest
 
 import xbmc
+import xbmcgui
 from strings import ADDON
 from xml.etree import ElementTree as eT
 
@@ -108,6 +109,10 @@ def save_setting(key, value, is_list=False):
 
     file_path = xbmc.translatePath(
         os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'settings.xml'))
+    if not os.path.exists(file_path):
+        xbmcgui.Dialog().ok('EPG-Direct', 'No Settings file has been created yet!',
+                            'Please open the program settings before proceeding.')
+        return False
     tree = eT.parse(file_path)
     root = tree.getroot()
     updated = False
@@ -134,6 +139,7 @@ def save_setting(key, value, is_list=False):
             updated = True
     if updated:
         tree.write(file_path)
+    return True
 
 
 def get_setting(key, is_list=False):

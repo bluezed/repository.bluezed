@@ -60,7 +60,8 @@ def enter_credentials(is_change=False):
     keyb.doModal()
     if keyb.isConfirmed():
         user = keyb.getText()
-        save_setting('sd.username', user)
+        if not save_setting('sd.username', user):
+            return
         keyb = xbmc.Keyboard(default_pass, 'Enter Password:', True)
         keyb.doModal()
         if keyb.isConfirmed():
