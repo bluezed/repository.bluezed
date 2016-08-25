@@ -28,11 +28,13 @@ import os
 import xbmc
 import xbmcgui
 import xbmcaddon
+from strings import ADDON
+
 
 def deleteDB():
     try:
-        xbmc.log("[script.epg.direct] Deleting database...", xbmc.LOGDEBUG)
-        dbPath = xbmc.translatePath(xbmcaddon.Addon(id='script.epg.direct').getAddonInfo('profile'))
+        xbmc.log("[%s] Deleting database..." % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
+        dbPath = xbmc.translatePath(xbmcaddon.Addon(id=ADDON.getAddonInfo('id')).getAddonInfo('profile'))
         dbPath = os.path.join(dbPath, 'source.db')
 
         delete_file(dbPath)
@@ -40,15 +42,16 @@ def deleteDB():
         passed = not os.path.exists(dbPath)
 
         if passed:
-            xbmc.log("[script.epg.direct] Deleting database...PASSED", xbmc.LOGDEBUG)
+            xbmc.log("[%s] Deleting database...PASSED" % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
         else:
-            xbmc.log("[script.epg.direct] Deleting database...FAILED", xbmc.LOGDEBUG)
+            xbmc.log("[%s] Deleting database...FAILED" % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
 
         return passed
 
     except Exception, e:
-        xbmc.log('[script.epg.direct] Deleting database...EXCEPTION', xbmc.LOGDEBUG)
+        xbmc.log('[%s] Deleting database...EXCEPTION' % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
         return False
+
 
 def delete_file(filename):
     tries = 10
@@ -62,10 +65,10 @@ def delete_file(filename):
 if __name__ == '__main__':
     if deleteDB():
         d = xbmcgui.Dialog()
-        d.ok('EPG-Direct', 'The database has been successfully deleted.',
+        d.ok(ADDON.getAddonInfo('name'), 'The database has been successfully deleted.',
              'It will be re-created next time you start the guide')
     else:
         d = xbmcgui.Dialog()
-        d.ok('EPG-Direct', 'Failed to delete database.', 'Database may be locked,',
+        d.ok(ADDON.getAddonInfo('name'), 'Failed to delete database.', 'Database may be locked,',
              'please restart XBMC and try again')
 

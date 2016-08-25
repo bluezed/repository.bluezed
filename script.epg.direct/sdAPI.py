@@ -57,7 +57,7 @@ class SdAPI(object):
         if 'code' in resp and int(resp['code']) != 0:
             xbmc.log("[%s] Error trying to log in: %s" % (ADDON.getAddonInfo('id'), resp['message']),
                      xbmc.LOGDEBUG)
-            xbmcgui.Dialog().ok('EPG-Direct', 'Error trying to log into SchedulesDirect:', resp['message'])
+            xbmcgui.Dialog().ok(ADDON.getAddonInfo('name'), 'Error trying to log into SchedulesDirect:', resp['message'])
             self.logged_in = False
         elif 'token' in resp:
             xbmc.log("[%s] SD-Token received: %s" % (ADDON.getAddonInfo('id'), resp['token']),
@@ -90,7 +90,7 @@ class SdAPI(object):
             except ValueError:
                 message = resp.text
 
-            xbmcgui.Dialog().ok('EPG-Direct', 'SchedulesDirect server reply:', message)
+            xbmcgui.Dialog().ok(ADDON.getAddonInfo('name'), 'SchedulesDirect server reply:', message)
             xbmc.log("[%s] SD-Server response: %s - %s" %
                      (ADDON.getAddonInfo('id'), resp.status_code, resp.text), xbmc.LOGDEBUG)
             return False

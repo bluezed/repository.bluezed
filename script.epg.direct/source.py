@@ -149,16 +149,16 @@ class Database(object):
 
             except sqlite3.OperationalError:
                 if cancel_requested_callback is None:
-                    xbmc.log('[script.epg.direct] Database is locked, bailing out...',
+                    xbmc.log('[%s] Database is locked, bailing out...' % ADDON.getAddonInfo('id'),
                              xbmc.LOGDEBUG)
                     break
                 else:  # ignore 'database is locked'
-                    xbmc.log('[script.epg.direct] Database is locked, retrying...', xbmc.LOGDEBUG)
+                    xbmc.log('[%s] Database is locked, retrying...' % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
 
             except sqlite3.DatabaseError:
                 self.conn = None
                 if self.alreadyTriedUnlinking:
-                    xbmc.log('[script.epg.direct] Database is broken and unlink() failed',
+                    xbmc.log('[%s] Database is broken and unlink() failed' % ADDON.getAddonInfo('id'),
                              xbmc.LOGDEBUG)
                     break
                 else:
@@ -279,7 +279,7 @@ class Database(object):
         dateStr = date.strftime('%Y-%m-%d')
         c = self.conn.cursor()
         try:
-            xbmc.log('[script.epg.direct] Updating caches...', xbmc.LOGDEBUG)
+            xbmc.log('[%s] Updating caches...' % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
             if progress_callback:
                 progress_callback(0)
 
@@ -895,7 +895,7 @@ class FileWrapper(object):
 class DirectScheduleSource(Source):
     KEY = 'sdirect'
     PLUGIN_DATA = xbmc.translatePath(
-        os.path.join('special://profile', 'addon_data', 'script.epg.direct'))
+        os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id')))
     INI_TYPE_DEFAULT = 0
     INI_TYPE_CUSTOM = 1
 
@@ -915,10 +915,10 @@ class DirectScheduleSource(Source):
             customFile = str(addon.getSetting('addons.ini.file'))
             if os.path.exists(customFile):
                 # uses local file provided by user!
-                xbmc.log('[script.epg.direct] Use local file: %s' % customFile, xbmc.LOGDEBUG)
+                xbmc.log('[%s] Use local file: %s' % (ADDON.getAddonInfo('id'), customFile), xbmc.LOGDEBUG)
             else:
                 # Probably a remote file
-                xbmc.log('[script.epg.direct] Use remote file: %s' % customFile, xbmc.LOGDEBUG)
+                xbmc.log('[%s] Use remote file: %s' % (ADDON.getAddonInfo('id'), customFile), xbmc.LOGDEBUG)
                 self.updateLocalFile(customFile, addon, True)
 
     def updateLocalFile(self, name, addon, isIni=False):

@@ -49,10 +49,10 @@ class Notification(object):
         self.icon = os.path.join(self.addonPath, 'icon.png')
 
     def createAlarmClockName(self, programTitle, startTime):
-        return 'tvguide-%s-%s' % (programTitle, startTime)
+        return 'epg-direct-%s-%s' % (programTitle, startTime)
 
     def scheduleNotifications(self):
-        xbmc.log("[script.epg.direct] Scheduling notifications", xbmc.LOGNOTICE)
+        xbmc.log("[%s] Scheduling notifications" % ADDON.getAddonInfo('id'), xbmc.LOGNOTICE)
         for ch_id, channelTitle, programTitle, startTime in self.database.getNotifications():
             self._scheduleNotification(ch_id, channelTitle, programTitle, startTime)
 

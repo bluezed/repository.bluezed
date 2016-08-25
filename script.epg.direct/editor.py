@@ -87,16 +87,16 @@ def delete_lineup():
         sel_lineup = [x for x in lineup_list if x["name"] == name]
         if len(sel_lineup) > 0:
             sel_lineup = sel_lineup[0]
-            yes_no = xbmcgui.Dialog().yesno('EPG-Direct',
+            yes_no = xbmcgui.Dialog().yesno(ADDON.getAddonInfo('name'),
                                             '[COLOR red]Deleting a lineup will also remove all '
                                             'channels associated with it![/COLOR]',
                                             'Do you want to continue?')
             if yes_no:
-                xbmcgui.Dialog().notification('EPG-Direct', 'Deleting lineup...',
+                xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Deleting lineup...',
                                               os.path.join(PATH, 'icon.png'), 3000)
                 if sd.delete_lineup(sel_lineup['lineup']):
                     database.deleteLineup(close, sel_lineup['lineup'])
-                    xbmcgui.Dialog().notification('EPG-Direct', 'Lineup "%s" deleted' % name,
+                    xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Lineup "%s" deleted' % name,
                                                   os.path.join(PATH, 'icon.png'), 5000)
 
 
@@ -105,7 +105,7 @@ def select_lineup():
     status = 'You have %d / %d lineups' % (len(sd.lineups), sd.max_lineups)
     if sd.max_lineups - len(sd.lineups) < 1:
         xbmcgui.Dialog().ok(
-            'EPG-Direct', status, 'To add a new one you need to first remove one of your lineups')
+            ADDON.getAddonInfo('name'), status, 'To add a new one you need to first remove one of your lineups')
         return
 
     country_list = sd.get_countries()
@@ -136,10 +136,10 @@ def select_lineup():
                     sel_lineup = [x for x in lineup_list if x["name"] == name]
                     if len(sel_lineup) > 0:
                         sel_lineup = sel_lineup[0]
-                        xbmcgui.Dialog().notification('EPG-Direct', 'Saving lineup...',
+                        xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Saving lineup...',
                                                       os.path.join(PATH, 'icon.png'), 3000)
                         if sd.save_lineup(sel_lineup['lineup']):
-                            xbmcgui.Dialog().notification('EPG-Direct', 'Lineup "%s" saved' %
+                            xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Lineup "%s" saved' %
                                                           name,
                                                           os.path.join(PATH, 'icon.png'), 5000)
                         else:
@@ -230,7 +230,7 @@ class StationsSelect(xbmcgui.WindowXMLDialog):
 
         elif controlId == self.C_CHANNELS_SAVE:
             self.database.saveLineup(self.close, self.channel_list, self.lineup)
-            xbmcgui.Dialog().notification('EPG-Direct', 'Changes saved...',
+            xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Changes saved...',
                                           os.path.join(PATH, 'icon.png'), 2500)
 
         elif controlId == self.C_CHANNELS_CANCEL:
@@ -258,7 +258,7 @@ class StationsSelect(xbmcgui.WindowXMLDialog):
 
 def onDbInit(success):
     if not success:
-        xbmcgui.Dialog().ok('EPG-Direct', 'Error initialising the Database!')
+        xbmcgui.Dialog().ok(ADDON.getAddonInfo('name'), 'Error initialising the Database!')
 
 
 def close():
@@ -276,7 +276,7 @@ if __name__ == '__main__':
     try:
         database = src.Database()
     except src.SourceNotConfiguredException:
-        xbmcgui.Dialog().ok('EPG-Direct', 'Error initialising the Database!')
+        xbmcgui.Dialog().ok(ADDON.getAddonInfo('name'), 'Error initialising the Database!')
         close()
     database.initialize(onDbInit)
 
@@ -291,7 +291,7 @@ if __name__ == '__main__':
                     login_ok = login_popup() and user and passw
 
                 if login_ok:
-                    xbmcgui.Dialog().notification('EPG-Direct', 'Loading data...',
+                    xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Loading data...',
                                                   os.path.join(PATH, 'icon.png'), 2000)
                     sd = SdAPI(user=user, passw=passw)
                     if sd.logged_in:

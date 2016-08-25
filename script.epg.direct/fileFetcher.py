@@ -28,6 +28,7 @@ import os
 import urllib2
 import datetime
 import zlib
+from strings import ADDON
 
 
 class FileFetcher(object):
@@ -43,7 +44,7 @@ class FileFetcher(object):
     TYPE_DEFAULT = 1
     TYPE_REMOTE = 2
 
-    basePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.epg.direct'))
+    basePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id')))
     filePath = ''
     fileUrl = ''
     addon = None
@@ -68,15 +69,15 @@ class FileFetcher(object):
             os.makedirs(self.basePath)
 
     def fetchFile(self):
-        retVal = self.FETCH_NOT_NEEDED
+        ret_val = self.FETCH_NOT_NEEDED
         fetch = False
         if not os.path.exists(self.filePath):  # always fetch if file doesn't exist!
             fetch = True
         else:
             interval = int(self.addon.getSetting('sd.interval'))
             if interval != self.INTERVAL_ALWAYS:
-                modTime = datetime.datetime.fromtimestamp(os.path.getmtime(self.filePath))
-                td = datetime.datetime.now() - modTime
+                mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(self.filePath))
+                td = datetime.datetime.now() - mod_time
                 # need to do it this way cause Android doesn't support .total_seconds() :(
                 diff = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6
                 if ((interval == self.INTERVAL_12 and diff >= 43200) or
@@ -87,26 +88,30 @@ class FileFetcher(object):
                 fetch = True
 
         if fetch:
-            tmpFile = os.path.join(self.basePath, 'tmp')
+            tmp_file = os.path.join(self.basePath, 'tmp')
             if self.fileType == self.TYPE_REMOTE:
-                xbmc.log('[script.epg.direct] file is in remote location: %s' % self.fileUrl, xbmc.LOGDEBUG)
-                if not xbmcvfs.copy(self.fileUrl, tmpFile):
-                    xbmc.log('[script.epg.direct] Remote file couldn\'t be copied: %s' % self.fileUrl, xbmc.LOGERROR)
+                xbmc.log('[%s] file is in remote location: %s' %
+                         (ADDON.getAddonInfo('id'), self.fileUrl), xbmc.LOGDEBUG)
+                if not xbmcvfs.copy(self.fileUrl, tmp_file):
+                    xbmc.log('[%s] Remote file couldn\'t be copied: %s' %
+                             (ADDON.getAddonInfo('id'), self.fileUrl), xbmc.LOGERROR)
             else:
-                f = open(tmpFile, 'wb')
-                xbmc.log('[script.epg.direct] file is on the internet: %s' % self.fileUrl, xbmc.LOGDEBUG)
-                tmpData = urllib2.urlopen(self.fileUrl)
-                data = tmpData.read()
-                if tmpData.info().get('content-encoding') == 'gzip':
+                f = open(tmp_file, 'wb')
+                xbmc.log('[%s] file is on the internet: %s' %
+                         (ADDON.getAddonInfo('id'), self.fileUrl), xbmc.LOGDEBUG)
+                tmp_data = urllib2.urlopen(self.fileUrl)
+                data = tmp_data.read()
+                if tmp_data.info().get('content-encoding') == 'gzip':
                     data = zlib.decompress(data, zlib.MAX_WBITS + 16)
                 f.write(data)
                 f.close()
-            if os.path.getsize(tmpFile) > 256:
+            if os.path.getsize(tmp_file) > 256:
                 if os.path.exists(self.filePath):
                     os.remove(self.filePath)
-                os.rename(tmpFile, self.filePath)
-                retVal = self.FETCH_OK
-                xbmc.log('[script.epg.direct] file %s was downloaded' % self.filePath, xbmc.LOGDEBUG)
+                os.rename(tmp_file, self.filePath)
+                ret_val = self.FETCH_OK
+                xbmc.log('[%s] file %s was downloaded' % (ADDON.getAddonInfo('id'), self.filePath),
+                         xbmc.LOGDEBUG)
             else:
-                retVal = self.FETCH_ERROR
-        return retVal
+                ret_val = self.FETCH_ERROR
+        return ret_val

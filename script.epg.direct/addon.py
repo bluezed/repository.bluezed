@@ -32,7 +32,7 @@ user = get_setting('sd.username')
 passw = get_setting('sd.password')
 if not user or not passw:
     if not login_popup():
-        xbmcgui.Dialog().ok('EPG-Direct', 'Your login details have been saved.',
+        xbmcgui.Dialog().ok(ADDON.getAddonInfo('name'), 'Your login details have been saved.',
                             'Please start the program again for the changes to take effect.')
     quit()
 

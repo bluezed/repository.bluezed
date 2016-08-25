@@ -22,7 +22,6 @@ import os
 from itertools import izip_longest
 
 import xbmc
-import xbmcgui
 from strings import ADDON
 from xml.etree import ElementTree as eT
 import xml.etree.cElementTree as ceT
@@ -95,12 +94,10 @@ class Program(object):
         self.language = language
 
     def __repr__(self):
-        return 'Program(channel=%s, title=%s, startDate=%s, endDate=%s, description=%s, imageLarge=%s, ' \
-               'imageSmall=%s, episode=%s, season=%s, is_movie=%s)' % (
-                   self.channel, self.title, self.startDate,
-                   self.endDate, self.description, self.imageLarge,
-                   self.imageSmall, self.season, self.episode,
-                   self.is_movie)
+        return 'Program(channel=%s, title=%s, startDate=%s, endDate=%s, description=%s, ' \
+               'imageLarge=%s, imageSmall=%s, episode=%s, season=%s, is_movie=%s)' % (
+                   self.channel, self.title, self.startDate, self.endDate, self.description,
+                   self.imageLarge, self.imageSmall, self.season, self.episode, self.is_movie)
 
 
 def save_setting(key, value, is_list=False):
@@ -151,10 +148,8 @@ def generate_settings_file(target_path):
     for item in root_source.findall('category'):
         for setting in item.findall('setting'):
             if 'id' in setting.attrib:
-                print "id found"
                 value = ''
                 if 'default' in setting.attrib:
-                    print "default found"
                     value = setting.attrib['default']
                 ceT.SubElement(root_target, 'setting', id=setting.attrib['id'], value=value)
     tree_target = ceT.ElementTree(root_target)
@@ -189,9 +184,4 @@ def get_logo(channel):
         logo = DEFAULT_LOGO_URL + 's' + channel.id + '_h3_aa.png'
     elif logo_type == LOGO_TYPE_CUSTOM:
         logo = logo_location + channel.title + '.png'
-        if logo_location.startswith("http://") or logo_location.startswith("sftp://") or \
-                logo_location.startswith("ftp://") or logo_location.startswith("https://") or \
-                logo_location.startswith("ftps://") or logo_location.startswith("smb://") or \
-                logo_location.startswith("nfs://"):  # looks like remote location
-            logo = logo.replace(' ', '%20')
     return logo

@@ -24,17 +24,18 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 #
-import xbmcaddon
+
 import notification
 import xbmc
 import source
+from strings import ADDON
 
 
 class Service(object):
     def __init__(self):
         self.database = source.Database()
         self.database.initialize(self.onInit)
-            
+
     def onInit(self, success):
         if success:
             self.database.updateChannelAndProgramListCaches(self.onCachesUpdated)
@@ -52,18 +53,18 @@ class Service(object):
 
 if __name__ == '__main__':
     try:
-        ADDON = xbmcaddon.Addon('script.epg.direct')
         if ADDON.getSetting('autostart') == "true":
-            xbmc.executebuiltin("RunAddon(script.epg.direct)")
-        
+            xbmc.executebuiltin("RunAddon(%s)" % ADDON.getAddonInfo('id'))
+
         if ADDON.getSetting('background.service') == 'true':
             monitor = xbmc.Monitor()
-            xbmc.log("[script.epg.direct] Background service started...", xbmc.LOGDEBUG)
+            xbmc.log("[%s] Background service started..." % ADDON.getAddonInfo('id'),
+                     xbmc.LOGDEBUG)
             Service()
             interval = int(ADDON.getSetting('service.interval'))
             waitTime = 21600  # Default 6hrs
             if interval == 0:
-                waitTime = 7200   # 2hrs
+                waitTime = 7200  # 2hrs
             elif interval == 1:
                 waitTime = 21600  # 6hrs
             elif interval == 2:
@@ -72,14 +73,17 @@ if __name__ == '__main__':
                 waitTime = 86400  # 24hrs
             while not monitor.abortRequested():
                 # Sleep/wait for specified time
-                xbmc.log("[script.epg.direct] Service waiting for interval %s" % waitTime, xbmc.LOGDEBUG)
+                xbmc.log(
+                    "[%s] Service waiting for interval %s" % (ADDON.getAddonInfo('id'), waitTime),
+                    xbmc.LOGDEBUG)
                 if monitor.waitForAbort(waitTime):
                     # Abort was requested while waiting. We should exit
                     break
-                xbmc.log("[script.epg.direct] Service now triggered...", xbmc.LOGDEBUG)
+                xbmc.log("[%s] Service now triggered..." % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
                 Service()
-                
+
     except source.SourceNotConfiguredException:
         pass  # ignore
     except Exception, ex:
-        xbmc.log('[script.epg.direct] Uncaught exception in service.py: %s' % str(ex), xbmc.LOGDEBUG)
+        xbmc.log('[%s] Uncaught exception in service.py: %s' % (ADDON.getAddonInfo('id'), str(ex)),
+                 xbmc.LOGDEBUG)

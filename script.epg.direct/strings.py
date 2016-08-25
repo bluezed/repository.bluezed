@@ -76,7 +76,8 @@ FETCH_ERROR_TITLE = 31000
 FETCH_ERROR_LINE1 = 31001
 FETCH_ERROR_LINE2 = 31002
 
-def strings(id, replacements = None):
+
+def strings(id, replacements=None):
     string = ADDON.getLocalizedString(id)
     if replacements is not None:
         return string % replacements

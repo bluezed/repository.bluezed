@@ -1,7 +1,7 @@
 EPG-Direct 
 ==========
 
-> Current version: v0.6.4a
+> Current version: v0.6.4b
 
 [![EPG-Direct](https://s19.postimg.org/760xuqdyb/screenshot017.png)](https://postimg.org/image/fbizsw273/)
 
@@ -53,6 +53,7 @@ On the left all the available channels for this lineup are listed. You can scrol
 Once you're happy with the selection click on "Save" and your channels will be saved to the database.
 You can now repeat this process for any other lineups you have.
 **Note:** To change the order of the channels you need to start the guide and enter the context menu.
+
 [![Channel-Selection](https://s19.postimg.org/sr60icaov/screenshot016.png)](https://postimg.org/image/sr60icaov/)
 
 - You can delete lineups by selecting "Delete lineup" and simply selecting the lineup you want to remove.
@@ -66,17 +67,33 @@ You can now repeat this process for any other lineups you have.
 - The "addons.ini" file is used to map channels to streams. There is one included in with the application but you can also provide your own file here.
 
 ## The Guide
-[![The Guide](https://s19.postimg.org/fbizsw273/screenshot017.png)](https://postimg.org/image/fbizsw273/)
 
 If you have selected your channels and start the guide it will first load the data from SchedulesDirect and then present you with the program grid.
 
+[![The Guide](https://s19.postimg.org/fbizsw273/screenshot017.png)](https://postimg.org/image/fbizsw273/)
+
+### Watching a channel
 You can scroll through the guide up, down, left and right. If you click on a program that is currently on the guide will try to open the corresponding stream or addon by looking for the Channel name in your Kodi favourites.
 If it cannot find the channel there it will try the same with the addons.ini file, either the default one or the one you have configured.
 If it has no luck there a dialog will appear where you have the choice to manually select where to play the program from. This selection will them be stored as the default for this channel.
 
+### Reminders
 When you click on a program that is on in the future a dialog appears where you can set a "Reminder". The program will the be marked red and you will get a notification 5 minuts before the program starts and then a pop-up at the time the program is scheduled. This pop-up allows you to open the guide directly or just dismiss it and also has a count-down that will close it automatically when that times out.
 
 [![Reminder](https://s19.postimg.org/a1e11lhy7/screenshot018.png)](https://postimg.org/image/a1e11lhy7/)
 
+### Sorting Channels
+In the same dialog where you saw the "Remind" button you can change the channel order by clicking on "Channels". That will open a list of all your channels with instructions on how to change the sort order.
 
-In the same dialog you can change the channel order by clicking on "Channels".
+Press left to pull a channel out, then move it up or down. When in place, press right again to set. Pressing on a channel in the list will enable or disable it. 
+On touch devices long press on a channel to pull it out, move the list to the desired place and then long press on the pulled out channel to put it in its new place.
+
+[![Channel sorting](https://s19.postimg.org/yj2geht0f/screenshot_CH.png)](https://postimg.org/image/yj2geht0f/)
+
+
+# Help & Support
+
+To get help or report issues with this Kodi addon please either raise an issue on [GitHub](https://github.com/bluezed/repository.bluezed/issues) or post on the [Kodi forum](http://forum.kodi.tv/showthread.php?tid=287868).
+
+For issues with the actual guide data, stations or lineups you should report this to SchedulesDirect [Lineup Support](http://www.schedulesdirect.org/lineupsupport) directly.
+
