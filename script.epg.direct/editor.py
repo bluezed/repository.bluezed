@@ -44,7 +44,7 @@ def login_popup(message=None):
                        'EPG-Direct requires that you have an account at SchedulesDirect.',
                        additional, '', 'Cancel', 'Login')
     if ret:
-        enter_credentials()
+        ret = enter_credentials()
     else:
         close()
     return ret
@@ -60,13 +60,16 @@ def enter_credentials(is_change=False):
     keyb.doModal()
     if keyb.isConfirmed():
         user = keyb.getText()
-        if not save_setting('sd.username', user):
-            return
         keyb = xbmc.Keyboard(default_pass, 'Enter Password:', True)
         keyb.doModal()
         if keyb.isConfirmed():
             passw = hashlib.sha1(keyb.getText().encode('utf-8')).hexdigest()
-            save_setting('sd.password', passw)
+            sd = SdAPI(user=user, passw=passw)
+            if sd.logged_in:
+                save_setting('sd.username', user)
+                save_setting('sd.password', passw)
+                return True
+    return False
 
 
 def delete_lineup():
@@ -291,12 +294,13 @@ if __name__ == '__main__':
                     xbmcgui.Dialog().notification('EPG-Direct', 'Loading data...',
                                                   os.path.join(PATH, 'icon.png'), 2000)
                     sd = SdAPI(user=user, passw=passw)
-                    if mode == 2:
-                        select_lineup()
-                    elif mode == 3:
-                        edit_channels()
-                    elif mode == 4:
-                        delete_lineup()
+                    if sd.logged_in:
+                        if mode == 2:
+                            select_lineup()
+                        elif mode == 3:
+                            edit_channels()
+                        elif mode == 4:
+                            delete_lineup()
 
     except SourceException as se:
         xbmcgui.Dialog().ok('ERROR', se.message,

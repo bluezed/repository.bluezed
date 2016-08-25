@@ -454,7 +454,7 @@ class TVGuide(xbmcgui.WindowXML):
         if program is None:
             return
 
-        title = '[B]%s[/B]' % program.title
+        title = '[COLOR yellow]%s[/COLOR]    [B]%s[/B]' % (program.channel.title, program.title)
         if program.season is not None and program.episode is not None:
             title += " [B]S%sE%s[/B]" % (program.season, program.episode)
         if program.is_movie == "Movie":

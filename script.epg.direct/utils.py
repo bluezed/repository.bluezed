@@ -25,6 +25,7 @@ import xbmc
 import xbmcgui
 from strings import ADDON
 from xml.etree import ElementTree as eT
+import xml.etree.cElementTree as ceT
 
 LOGO_TYPE_DEFAULT = 0
 LOGO_TYPE_CUSTOM = 1
@@ -110,9 +111,7 @@ def save_setting(key, value, is_list=False):
     file_path = xbmc.translatePath(
         os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'settings.xml'))
     if not os.path.exists(file_path):
-        xbmcgui.Dialog().ok('EPG-Direct', 'No Settings file has been created yet!',
-                            'Please open the program settings before proceeding.')
-        return False
+        generate_settings_file(file_path)
     tree = eT.parse(file_path)
     root = tree.getroot()
     updated = False
@@ -140,6 +139,28 @@ def save_setting(key, value, is_list=False):
     if updated:
         tree.write(file_path)
     return True
+
+
+def generate_settings_file(target_path):
+    source_path = xbmc.translatePath(
+        os.path.join('special://home', 'addons', ADDON.getAddonInfo('id'), 'resources',
+                     'settings.xml'))
+    root_target = ceT.Element("settings")
+    tree_source = eT.parse(source_path)
+    root_source = tree_source.getroot()
+    for item in root_source.findall('category'):
+        for setting in item.findall('setting'):
+            if 'id' in setting.attrib:
+                print "id found"
+                value = ''
+                if 'default' in setting.attrib:
+                    print "default found"
+                    value = setting.attrib['default']
+                ceT.SubElement(root_target, 'setting', id=setting.attrib['id'], value=value)
+    tree_target = ceT.ElementTree(root_target)
+    f = open(target_path, 'w')
+    tree_target.write(f)
+    f.close()
 
 
 def get_setting(key, is_list=False):

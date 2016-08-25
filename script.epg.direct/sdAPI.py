@@ -38,13 +38,15 @@ class SdAPI(object):
 
         self._main_url = MAIN_URL
         self._user = user
+        self.logged_in = False
         self.changes_remaining = 0
         self.max_lineups = 0
         self.lineups = []
         if self._main_url and self._user and passw:
             self._pass = passw  # Needs to be SHA1-Hex!
             self._get_token()
-            self._get_status()
+            if self.logged_in:
+                self._get_status()
         else:
             raise SourceException('SD-Data not configured!')
 
@@ -56,10 +58,12 @@ class SdAPI(object):
             xbmc.log("[%s] Error trying to log in: %s" % (ADDON.getAddonInfo('id'), resp['message']),
                      xbmc.LOGDEBUG)
             xbmcgui.Dialog().ok('EPG-Direct', 'Error trying to log into SchedulesDirect:', resp['message'])
+            self.logged_in = False
         elif 'token' in resp:
             xbmc.log("[%s] SD-Token received: %s" % (ADDON.getAddonInfo('id'), resp['token']),
                      xbmc.LOGDEBUG)
             self._headers['token'] = resp['token']
+            self.logged_in = True
 
     def _get_status(self):
         status = self._get('status')

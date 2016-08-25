@@ -25,16 +25,15 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 import gui
-import xbmcgui
 from utils import *
 from editor import login_popup
 
 user = get_setting('sd.username')
 passw = get_setting('sd.password')
 if not user or not passw:
-    if login_popup():
-       xbmcgui.Dialog().ok('EPG-Direct', 'Your login details have been saved.',
-                           'Please start the program again for the changes to take effect.')
+    if not login_popup():
+        xbmcgui.Dialog().ok('EPG-Direct', 'Your login details have been saved.',
+                            'Please start the program again for the changes to take effect.')
     quit()
 
 try:
