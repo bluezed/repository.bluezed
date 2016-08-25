@@ -29,6 +29,7 @@ import threading
 import time
 
 import source as src
+import xbmcgui
 from notification import Notification
 from strings import *
 import streaming

@@ -37,7 +37,7 @@ class StreamsService(object):
             path = xbmc.translatePath(
                 os.path.join('special://home', 'addons', addon.getAddonInfo('id'), 'resources',
                              'addons.ini'))
-            xbmc.log('[%s] Default addons.ini is used' % ADDON.getAddonInfo('id'), xbmc.LOGDEBUG)
+            xbmc.log('[%s] Default addons.ini is used' % addon.getAddonInfo('id'), xbmc.LOGDEBUG)
         else:
             customFile = str(addon.getSetting('addons.ini.file'))
             if os.path.exists(customFile):
@@ -46,7 +46,7 @@ class StreamsService(object):
                 path = xbmc.translatePath(
                     os.path.join('special://profile', 'addon_data', addon.getAddonInfo('id'),
                                  customFile.split('/')[-1]))
-            xbmc.log('[%s] Custom addons.ini is used: %s' % (ADDON.getAddonInfo('id'), path), xbmc.LOGDEBUG)
+            xbmc.log('[%s] Custom addons.ini is used: %s' % (addon.getAddonInfo('id'), path), xbmc.LOGDEBUG)
 
         self.addonsParser = ConfigParser.ConfigParser(dict_type=OrderedDict)
         self.addonsParser.optionxform = lambda option: option

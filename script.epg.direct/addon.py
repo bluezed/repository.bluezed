@@ -25,6 +25,7 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 import gui
+import xbmcgui
 from utils import *
 from editor import login_popup
 
