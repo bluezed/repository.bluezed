@@ -1,7 +1,7 @@
 EPG-Direct 
 ==========
 
-> Current version: v0.6.4c
+> Current version: v0.6.4d
 
 [![EPG-Direct](https://s19.postimg.org/760xuqdyb/screenshot017.png)](https://postimg.org/image/fbizsw273/)
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.epg.direct" name="EPG-Direct" version="0.6.4c" provider-name="bluezed">
+<addon id="script.epg.direct" name="EPG-Direct" version="0.6.4d" provider-name="bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="script.module.requests" version="2.9.1"/>
@@ -20,7 +20,7 @@
 		<source>https://github.com/bluezed/repository.bluezed</source>
         <website></website>
 		<email>bluezed.apps@gmail.com</email>
-        <news>v0.6.4b (2016-08-25) - Improved settings handling[CR]v0.6.3 (2016-08-22) - Initial release</news>
+        <news>v0.6.4d (2016-08-26) - Improved settings handling[CR]v0.6.3 (2016-08-22) - Initial release</news>
 		<assets>
           <icon>resources/img/icon.png</icon>
           <fanart>resources/img/fanart.jpg</fanart>
