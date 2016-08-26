@@ -13,7 +13,7 @@
 	</extension>
 </addon>
 
-<addon id="script.epg.direct" name="EPG-Direct" version="0.6.4b" provider-name="bluezed">
+<addon id="script.epg.direct" name="EPG-Direct" version="0.6.4c" provider-name="bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="script.module.requests" version="2.9.1"/>
