@@ -72,7 +72,7 @@ class Notification(object):
                              timeToNotification - 5))
 
         path = xbmc.translatePath(
-            os.path.join('special://home', 'addons', ADDON.getAddonInfo('id'), 'notification.py'))
+            os.path.join(ADDON.getAddonInfo('path'), 'notification.py'))
         xbmc.executebuiltin('AlarmClock(%s-now,RunScript(%s, %s, %s, "%s"),%d,True)' %
                             (name.encode('utf-8', 'replace'), path, ch_id,
                              channelTitle.encode('utf-8', 'replace'),
@@ -173,7 +173,7 @@ if __name__ == '__main__':
         notify.doModal()
 
         if notify.start_play:
-            icon = path = xbmc.translatePath(os.path.join('special://home', 'addons', ADDON.getAddonInfo('id'), 'icon.png'))
+            icon = path = xbmc.translatePath(os.path.join(ADDON.getAddonInfo('path'), 'icon.png'))
             xbmc.executebuiltin('Notification("Loading", "Please wait...",,%s)' % icon)
             xbmc.executebuiltin('RunScript(%s)' % ADDON.getAddonInfo('id'))
 

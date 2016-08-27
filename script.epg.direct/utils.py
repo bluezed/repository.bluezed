@@ -106,7 +106,7 @@ def save_setting(key, value, is_list=False):
              (ADDON.getAddonInfo('id'), key, str(value)), xbmc.LOGDEBUG)
 
     file_path = xbmc.translatePath(
-        os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'settings.xml'))
+        os.path.join(ADDON.getAddonInfo('profile'), 'settings.xml'))
     if not os.path.exists(file_path):
         generate_settings_file(file_path)
     tree = eT.parse(file_path)
@@ -140,8 +140,7 @@ def save_setting(key, value, is_list=False):
 
 def generate_settings_file(target_path):
     source_path = xbmc.translatePath(
-        os.path.join('special://home', 'addons', ADDON.getAddonInfo('id'), 'resources',
-                     'settings.xml'))
+        os.path.join(ADDON.getAddonInfo('path'), 'resources', 'settings.xml'))
     root_target = ceT.Element("settings")
     tree_source = eT.parse(source_path)
     root_source = tree_source.getroot()
@@ -188,8 +187,10 @@ def get_logo(channel):
 
 
 def reset_playing():
-    proc_file = xbmc.translatePath(
-        os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'proc'))
+    path = xbmc.translatePath(ADDON.getAddonInfo('profile'))
+    if not os.path.exists(path):
+        os.mkdir(path)
+    proc_file = os.path.join(path, 'proc')
     f = open(proc_file, 'w')
     f.write('')
     f.close()

@@ -63,11 +63,15 @@ def enter_credentials(is_change=False):
         keyb = xbmc.Keyboard(default_pass, 'Enter Password:', True)
         keyb.doModal()
         if keyb.isConfirmed():
+            xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Checking login...',
+                                          os.path.join(PATH, 'icon.png'), 1500)
             passw = hashlib.sha1(keyb.getText().encode('utf-8')).hexdigest()
             sd = SdAPI(user=user, passw=passw)
             if sd.logged_in:
                 save_setting('sd.username', user)
                 save_setting('sd.password', passw)
+                xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Login saved',
+                                              os.path.join(PATH, 'icon.png'), 2000)
                 return True
     return False
 
@@ -105,7 +109,8 @@ def select_lineup():
     status = 'You have %d / %d lineups' % (len(sd.lineups), sd.max_lineups)
     if sd.max_lineups - len(sd.lineups) < 1:
         xbmcgui.Dialog().ok(
-            ADDON.getAddonInfo('name'), status, 'To add a new one you need to first remove one of your lineups')
+            ADDON.getAddonInfo('name'), status,
+            'To add a new one you need to first remove one of your lineups')
         return
 
     country_list = sd.get_countries()
@@ -139,8 +144,8 @@ def select_lineup():
                         xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Saving lineup...',
                                                       os.path.join(PATH, 'icon.png'), 3000)
                         if sd.save_lineup(sel_lineup['lineup']):
-                            xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), 'Lineup "%s" saved' %
-                                                          name,
+                            xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'),
+                                                          'Lineup "%s" saved' % name,
                                                           os.path.join(PATH, 'icon.png'), 5000)
                         else:
                             raise SourceException('Lineup could not be saved! '

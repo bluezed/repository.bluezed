@@ -44,7 +44,7 @@ class FileFetcher(object):
     TYPE_DEFAULT = 1
     TYPE_REMOTE = 2
 
-    basePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id')))
+    basePath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
     filePath = ''
     fileUrl = ''
     addon = None

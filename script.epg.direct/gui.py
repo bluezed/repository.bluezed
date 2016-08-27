@@ -139,8 +139,7 @@ class TVGuide(xbmcgui.WindowXML):
         self.streamingService = streaming.StreamsService(ADDON)
         self.player = xbmc.Player()
         self.database = None
-        self.proc_file = xbmc.translatePath(
-                os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'proc'))
+        self.proc_file = xbmc.translatePath(os.path.join(ADDON.getAddonInfo('profile'), 'proc'))
 
         if not os.path.exists(self.proc_file):
             self.reset_playing()

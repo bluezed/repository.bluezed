@@ -894,8 +894,7 @@ class FileWrapper(object):
 
 class DirectScheduleSource(Source):
     KEY = 'sdirect'
-    PLUGIN_DATA = xbmc.translatePath(
-        os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id')))
+    PLUGIN_DATA = xbmc.translatePath(ADDON.getAddonInfo('profile'))
     INI_TYPE_DEFAULT = 0
     INI_TYPE_CUSTOM = 1
 
