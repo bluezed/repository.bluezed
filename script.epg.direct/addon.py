@@ -29,6 +29,9 @@ import xbmcgui
 from utils import *
 from editor import login_popup
 
+# After a restart the proc file should be wiped!
+reset_playing()
+
 user = get_setting('sd.username')
 passw = get_setting('sd.password')
 if not user or not passw:

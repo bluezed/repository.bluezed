@@ -29,6 +29,7 @@ import notification
 import xbmc
 import source
 from strings import ADDON
+from utils import reset_playing
 
 
 class Service(object):
@@ -52,6 +53,10 @@ class Service(object):
 
 
 if __name__ == '__main__':
+
+    # After a reboot the proc file should be wiped!
+    reset_playing()
+
     try:
         if ADDON.getSetting('autostart') == "true":
             xbmc.executebuiltin("RunAddon(%s)" % ADDON.getAddonInfo('id'))

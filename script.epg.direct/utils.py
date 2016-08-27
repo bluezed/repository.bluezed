@@ -185,3 +185,11 @@ def get_logo(channel):
     elif logo_type == LOGO_TYPE_CUSTOM and not logo.startswith(logo_location):
         logo = logo_location + channel.title + '.png'
     return logo
+
+
+def reset_playing():
+    proc_file = xbmc.translatePath(
+        os.path.join('special://profile', 'addon_data', ADDON.getAddonInfo('id'), 'proc'))
+    f = open(proc_file, 'w')
+    f.write('')
+    f.close()
