@@ -210,6 +210,7 @@ class TVGuide(xbmcgui.WindowXML):
             self.focusPoint.y = play_data['y']
             self.onRedrawEPG(self.channelIdx, self.viewStartDate,
                              focusFunction=self._findCurrentTimeslot)
+            reset_playing()
         elif self.database:
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
         else:
@@ -429,7 +430,6 @@ class TVGuide(xbmcgui.WindowXML):
                 self.notification.removeNotification(program)
             else:
                 self.notification.addNotification(program)
-
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
 
         elif buttonClicked == PopupMenu.C_POPUP_CHOOSE_STREAM:
@@ -872,13 +872,10 @@ class TVGuide(xbmcgui.WindowXML):
 
     def onPlayBackStopped(self):
         if not self.player.isPlaying() and not self.isClosing:
-            self.reset_playing()
             self._hideControl(self.C_MAIN_OSD)
             self.viewStartDate = datetime.datetime.today()
             self.viewStartDate -= datetime.timedelta(minutes=self.viewStartDate.minute % 30,
                                                      seconds=self.viewStartDate.second)
-            self.onRedrawEPG(self.channelIdx, self.viewStartDate,
-                             focusFunction=self._findCurrentTimeslot)
 
     def _secondsToXposition(self, seconds):
         return self.epgView.left + (seconds * self.epgView.width / 7200)
