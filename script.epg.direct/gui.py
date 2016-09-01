@@ -210,7 +210,6 @@ class TVGuide(xbmcgui.WindowXML):
             self.focusPoint.y = play_data['y']
             self.onRedrawEPG(self.channelIdx, self.viewStartDate,
                              focusFunction=self._findCurrentTimeslot)
-            self.reset_playing()
         elif self.database:
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
         else:
