@@ -13,7 +13,7 @@
 	</extension>
 </addon>
 
-<addon id="script.epg.direct" name="EPG-Direct" version="0.6.6b" provider-name="bluezed">
+<addon id="script.epg.direct" name="EPG-Direct" version="0.6.7" provider-name="bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="script.module.requests" version="2.9.1"/>
@@ -34,7 +34,7 @@
 		<source>https://github.com/bluezed/repository.bluezed</source>
         <website></website>
 		<email>bluezed.apps@gmail.com</email>
-        <news>v0.6.6b (2016-09-01) - Minor bugfix in positioning[CR]v0.6.5a (2016-08-27) - Re-worked guide positioning after playback[CR]v0.6.4d (2016-08-26) - Improved settings handling[CR]v0.6.3 (2016-08-22) - Initial release</news>
+        <news>v0.6.7 (2016-09-28) - Minor Cosmetic changes[CR]v0.6.6b (2016-09-01) - Minor bugfix in positioning[CR]v0.6.5a (2016-08-27) - Re-worked guide positioning after playback[CR]v0.6.4d (2016-08-26) - Improved settings handling[CR]v0.6.3 (2016-08-22) - Initial release</news>
 		<assets>
           <icon>resources/img/icon.png</icon>
           <fanart>resources/img/fanart.jpg</fanart>

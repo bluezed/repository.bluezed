@@ -1111,13 +1111,10 @@ class PopupMenu(xbmcgui.WindowXMLDialog):
             chooseStrmControl = self.getControl(self.C_POPUP_CHOOSE_STREAM)
             chooseStrmControl.setLabel(strings(REMOVE_STRM_FILE))
 
+        channelTitleControl.setLabel(self.program.channel.title)
         if self.program.channel.logo is not None:
             logo = get_logo(self.program.channel)
             channelLogoControl.setImage(logo.encode('utf-8', 'replace'))
-            channelTitleControl.setVisible(False)
-        else:
-            channelTitleControl.setLabel(self.program.channel.title)
-            channelLogoControl.setVisible(False)
 
         programTitleControl.setLabel(self.program.title)
 
@@ -1315,6 +1312,7 @@ class StreamSetupDialog(xbmcgui.WindowXMLDialog):
     C_STREAM_ADDONS_PREVIEW = 3005
     C_STREAM_ADDONS_OK = 3006
     C_STREAM_ADDONS_CANCEL = 3007
+    C_STREAM_CHANNEL = 4000
 
     C_STREAM_VISIBILITY_MARKER = 100
 
@@ -1347,6 +1345,9 @@ class StreamSetupDialog(xbmcgui.WindowXMLDialog):
         super(StreamSetupDialog, self).close()
 
     def onInit(self):
+        channelTitle = self.getControl(StreamSetupDialog.C_STREAM_CHANNEL)
+        channelTitle.setLabel(self.channel.title)
+
         self.getControl(self.C_STREAM_VISIBILITY_MARKER).setLabel(self.VISIBLE_STRM)
 
         favourites = self.streamingService.loadFavourites()

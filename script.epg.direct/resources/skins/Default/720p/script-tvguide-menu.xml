@@ -57,7 +57,7 @@ Clicking on one with toggle it on or off. Pressing left, however, will slot the 
 This is an easy way to get your guide just how you want it.
 </label>
         </control>
-			
+
         <control type="image" id="4100">
             <posx>160</posx>
             <posy>100</posy>
@@ -68,13 +68,14 @@ This is an easy way to get your guide just how you want it.
         </control>
         <control type="label" id="4101">
             <posx>160</posx>
-            <posy>100</posy>
+            <posy>170</posy>
             <width>240</width>
             <height>50</height>
             <align>center</align>
             <aligny>center</aligny>
             <font>font13</font>
             <textcolor>ffffffff</textcolor>
+			<visible>true</visible>
         </control>
 
         <control type="button" id="4000"><!-- Watch Stream -->

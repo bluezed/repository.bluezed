@@ -57,7 +57,7 @@
 
         <control type="label"><!-- Set Up Stream Text -->
             <posx>180</posx>
-            <posy>105</posy>
+            <posy>110</posy>
             <width>174</width>
             <height>40</height>
             <label>$ADDON[script.epg.direct 30600]</label>
@@ -111,6 +111,18 @@
             <onleft>102</onleft>
             <onright>101</onright>
             <ondown>3001</ondown>
+        </control>
+
+        <control type="label" id="4000">
+            <posx>875</posx>
+            <posy>105</posy>
+            <width>240</width>
+            <height>50</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+			<visible>true</visible>
         </control>
 
         <control type="videowindow">

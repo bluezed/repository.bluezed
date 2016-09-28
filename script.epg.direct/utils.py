@@ -182,7 +182,7 @@ def get_logo(channel):
     if not logo and logo_type == LOGO_TYPE_DEFAULT:
         logo = DEFAULT_LOGO_URL + 's' + channel.id + '_h3_aa.png'
     elif logo_type == LOGO_TYPE_CUSTOM and not logo.startswith(logo_location):
-        logo = logo_location + channel.title + '.png'
+        logo = os.path.join(logo_location, channel.title + '.png')
     return logo
 
 
