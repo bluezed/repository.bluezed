@@ -44,4 +44,22 @@
         </assets>
 	</extension>
 </addon>
+
+<addon id="service.videodb.cleaner" name="VideoDB-Cleaner" version="1.0.0" provider-name="bluezed">
+  <requires>
+    <import addon="xbmc.python" version="2.24.0"/>
+  </requires>
+  <extension point="xbmc.python.script" library="manual.py">
+     <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="default.py" start="login">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+		<summary lang="en">VideoDB-Cleaner</summary>
+		<description lang="en">VideoDB-Cleaner removes entries from the Video-DB that refer to external sources which ensures that the Kodi database cleanup runs fast and efficiently as those sources will not have to be scanned one by one during this process.</description>
+		<platform>all</platform>
+		<license>GPLv2</license>
+		<source>https://github.com/bluezed/repository.bluezed</source>
+	</extension>
+</addon>
 </addons>
