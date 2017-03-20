@@ -23,7 +23,9 @@ import os
 import sqlite3
 import xbmc
 import xbmcaddon
+import urllib
 import xbmcgui
+import xbmcvfs
 
 
 class Cleaner:
@@ -72,23 +74,39 @@ class Cleaner:
         if 'result' in json_query and 'sources' in json_query['result']:
             xbmc.log('[service.videodb.cleaner] Found these sources: %s' % str(json_query['result']['sources'])
                      , xbmc.LOGDEBUG)
+            paths = []
             for source in json_query['result']['sources']:
-                if len(sql) > 0:
-                    sql += ' AND'
-                sql += " strpath NOT LIKE '" + source['file'] + "%'"
+                f_path = source['file']
+                if f_path.startswith('multipath://'):
+                    # sample: multipath://%2fhome%2fbluezed%2fMoreTV%2f/%2fhome%2fbluezed%2fTV%20Shows%2f/
+                    for path in f_path[12:].split('/'):
+                        if len(path) > 0:
+                            paths.append(urllib.unquote(path))
+                else:
+                    paths.append(f_path)
 
-        xbmc.log('[service.videodb.cleaner] Cleaning all external sources from Video-DB...', xbmc.LOGDEBUG)
-        conn = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES)
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("DELETE FROM path WHERE" + sql + ";")
-        xbmc.log("[service.videodb.cleaner] Executing: \"DELETE FROM path WHERE%s;\"" % sql, xbmc.LOGDEBUG)
-        c.execute('DELETE FROM files WHERE idPath NOT IN (SELECT p.idPath FROM path p);')
-        c.execute('DELETE FROM episode WHERE idFile NOT IN (SELECT f.idFile FROM files f);')
-        c.execute('DELETE FROM streamdetails WHERE idFile NOT IN (SELECT f.idFile FROM files f);')
-        c.close()
-        conn.commit()
-        conn.close()
+            for path in paths:
+                if xbmcvfs.exists(path):
+                    xbmc.log("[service.videodb.cleaner] Found path: %s" % path, xbmc.LOGDEBUG)
+                    if len(sql) > 0:
+                        sql += ' AND'
+                    sql += " strpath NOT LIKE '{0}%'".format(path)
+	
+        if len(sql) > 0:
+            xbmc.log('[service.videodb.cleaner] Cleaning all external sources from Video-DB...', xbmc.LOGDEBUG)
+            conn = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES)
+            conn.row_factory = sqlite3.Row
+            c = conn.cursor()
+            c.execute("DELETE FROM path WHERE" + sql + ";")
+            xbmc.log("[service.videodb.cleaner] Executing: \"DELETE FROM path WHERE%s;\"" % sql, xbmc.LOGDEBUG)
+            c.execute('DELETE FROM files WHERE idPath NOT IN (SELECT p.idPath FROM path p);')
+            c.execute('DELETE FROM episode WHERE idFile NOT IN (SELECT f.idFile FROM files f);')
+            c.execute('DELETE FROM streamdetails WHERE idFile NOT IN (SELECT f.idFile FROM files f);')
+            c.close()
+            conn.commit()
+            conn.close()
+        else:
+            xbmc.log('[service.videodb.cleaner] No sources found so cannot clean anything.', xbmc.LOGINFO)
 
     @staticmethod
     def get_kodi_version():
