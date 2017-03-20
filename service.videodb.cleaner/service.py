@@ -23,11 +23,11 @@ import os
 import sqlite3
 import xbmc
 import xbmcaddon
+import xbmcgui
 
 
 class Cleaner:
     addon = ''
-    force_clean = False
     db_path = ''
 
     # Mapping Kodi-version to its corresponding Video-DB version
@@ -41,8 +41,10 @@ class Cleaner:
         xbmc.log('[service.videodb.cleaner] Kodi-Version: %s, DB-Path: %s' % (str(ver), self.db_path), xbmc.LOGDEBUG)
 
     def run_manual(self):
-        xbmc.log("[service.videodb.cleaner] Started manually", xbmc.LOGINFO)
-        self._run()
+        if xbmcgui.Dialog().yesno('VideoDB-Cleaner', 'Would you like to run the cleaner now?'):
+            xbmc.log("[service.videodb.cleaner] Started manually", xbmc.LOGINFO)
+            self._run()
+            xbmcgui.Dialog().notification('VideoDB-Cleaner', 'Finished')
 
     def run(self):
         if self.addon.getSetting('service_enabled') == "true":
