@@ -7,7 +7,7 @@ VideoDB-Cleaner removes entries from the Video-DB that refer to external sources
 
 Download the Repository from [HERE](http://raw.github.com/bluezed/repository.bluezed/master/zips/repository.bluezed/repository.bluezed-1.1.zip)
 
-Here are the basic steps to install EPG-Direct on your Kodi box.
+Here are the basic steps to install VideoDB-Cleaner on your Kodi box.
 
 # Prerequisites
 * Kodi 16 or higher
